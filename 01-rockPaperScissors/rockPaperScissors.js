@@ -17,7 +17,18 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
+var rockPaperScissors = function (cnt) {
   // TODO: your solution here
+    let box = ['rock','paper','scissors'];
+    let ans = [];
+    for(let i = 0 ; i< box.length; i++){
+        if( cnt - 1 >= 0){
+            ans.push(box[i]);
+            ans = ans.concat(rockPaperScissors(cnt-1));
+        }
+    }
+    return ans;
 };
+
+
+console.log(rockPaperScissors(2));
