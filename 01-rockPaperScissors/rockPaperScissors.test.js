@@ -40,7 +40,7 @@ describe('rockPaperScissors', function(){
       ["scissors","paper","paper"],["scissors","paper","scissors"],
       ["scissors","scissors","rock"],["scissors","scissors","paper"],
       ["scissors","scissors","scissors"]];
-    var result = rockPaperScissors();
+    var result = rockPaperScissors(3);
     result.length.should.equal(expected.length);
     var expected_hash = {}, result_hash = {};
     for(var i = 0; i < expected.length; i++){
