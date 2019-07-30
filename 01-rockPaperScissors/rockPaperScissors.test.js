@@ -40,7 +40,7 @@ describe('rockPaperScissors', function(){
       ["scissors","paper","paper"],["scissors","paper","scissors"],
       ["scissors","scissors","rock"],["scissors","scissors","paper"],
       ["scissors","scissors","scissors"]];
-    var result = rockPaperScissors(3);
+    var result = rockPaperScissors();
     result.length.should.equal(expected.length);
     var expected_hash = {}, result_hash = {};
     for(var i = 0; i < expected.length; i++){
@@ -60,7 +60,6 @@ describe('rockPaperScissors', function(){
   });
   describe('EXTRA CREDIT', function () {
     it('should take an argument', function () {
-      console.log('extra',rockPaperScissors.length);
       rockPaperScissors.length.should.be.above(0);
     });
     it('should return results for rockPaperScissors(2)', function(){
