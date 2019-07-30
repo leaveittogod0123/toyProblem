@@ -20,6 +20,7 @@
 
 var rockPaperScissors = function (cnt) {
     // TODO: your solution here
+    const argument = cnt || 0;
     const results = [];
 
     const box = ['rock', 'paper', 'scissors'];
@@ -36,7 +37,8 @@ var rockPaperScissors = function (cnt) {
         }
     };
 
-    recurse(cnt, []);
+    recurse(argument, []);
 
     return results;
 };
+
