@@ -17,18 +17,26 @@
 *
 */
 
+
 var rockPaperScissors = function (cnt) {
-  // TODO: your solution here
-    let box = ['rock','paper','scissors'];
-    let ans = [];
-    for(let i = 0 ; i< box.length; i++){
-        if( cnt - 1 >= 0){
-            ans.push(box[i]);
-            ans = ans.concat(rockPaperScissors(cnt-1));
+    // TODO: your solution here
+    const results = [];
+
+    const box = ['rock', 'paper', 'scissors'];
+
+    function recurse(cnt, played) {
+        if(cnt === 0) {
+            results.push(played);
+            return;
         }
-    }
-    return ans;
+
+        for(let i = 0; i < box.length; i++) {
+            const current = box[i];
+            recurse(cnt-1, played.concat(current));
+        }
+    };
+
+    recurse(cnt, []);
+
+    return results;
 };
-
-
-console.log(rockPaperScissors(2));
