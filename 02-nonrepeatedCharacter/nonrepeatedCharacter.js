@@ -8,9 +8,6 @@
 
 var firstNonRepeatedCharacter = function(string) {
   // TODO: your solution here
-    if(!string){
-        return;
-    }
 
     // 체크 객체를 만들어서 동적으로 프로퍼티를 추가할 저장 객체를 만듬.
     let checkCharacter = {};
