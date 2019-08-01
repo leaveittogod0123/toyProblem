@@ -24,4 +24,21 @@
 
 Array.prototype.isSubsetOf = function(array){
   // Your code here
+    
+    let thisArr = this;
+
+    let set = new Set();
+    
+    for (const value of array){
+        set.add(value);
+    }
+
+    for( const value of thisArr){
+        if(!set.has(value)){
+            return false;
+        }
+    }
+
+    return true;
+
 };
