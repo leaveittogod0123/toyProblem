@@ -25,13 +25,20 @@ var nthFibonacci = function (n) {
 
     let memo = {};
 
-    memo[`${0}`] = 0;
-    memo[`${1}`] = 1;
+    function fibo(n){
+        if( n === 0 || n === 1){
+            return n;
+        }
 
-    for(let i = 2 ;  i<= n; i++){
-        memo[`${i}`] = memo[`${i-1}`] + memo[`${i-2}`];
+        if(memo[`${n}`]){
+            return memo[`${n}`];
+        }
+
+        memo[`${n}`] = fibo(n-1) + fibo(n-2);
+        return memo[`${n}`];
     }
-    return memo[`${n}`];
+
+    return fibo(n);
 };
 
 
