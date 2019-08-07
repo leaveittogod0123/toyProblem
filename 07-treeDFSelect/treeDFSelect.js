@@ -53,11 +53,11 @@ Tree.prototype.DFSelect = function (filter) {
     }
 
 
-    if (filter(this.value, 0)) {
+    if (filter(this.value, 0, 0)) {
         ans.push(this.value);
     }
 
-    traverse(this, ans, 0);
+    traverse(this, ans, 1);
 
     return ans;
 };
