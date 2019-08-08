@@ -10,53 +10,30 @@
 
 var largestProductOfThree = function(array) {
     // TODO: everything
-    // ans 만들고 0번값 저장
-    // 1번부터 ans =ans * 1번
-    // 반복
-    // reduce 활용법 공부
 
-    // 모두 음수일경우에는 가장 큰 작은 음수에 -1을 더해줘요. 맞는지 모르겠음.
-    // 문제 이해를 못하고 풀었음..
-    // 양수가 있을 경우에는 음수를 양수로 뒤집고 큰 세개의 수만 곱해서 리턴해줘요.
 
-    let EveryNegativeflag = array.every( (currentValue) => {
-        return currentValue < 0;
-    });
+    // 문제 이해했음.
+    // 음수가 있어도 부호와 상관없이 크면 곱해줘야함.
 
-    if(EveryNegativeflag){
+    let sortedArr = array.sort((a,b) => Math.abs(b)-Math.abs(a));
+    console.log(sortedArr);
 
-        array.sort();
+    // 완전탐색, 정렬, 그리디가 있을것 같은데
+    // 정렬하고 그리디랑 전략이 비슷함.
+    // 일단 완탐을 하면 3개를 뽑아야하니 O(N^3)
 
-        let ans = array.sort()[array.length-1] -1;
+    let max = Math.min(...sortedArr);
 
-        return ans;
-
+    for(let i = 0; i< sortedArr.length; i++){
+        for(let j = i+1; j< sortedArr.length; j++){
+            for(let k = j+1; k < sortedArr.length; k++){
+                if( max < sortedArr[i] * sortedArr[j] * sortedArr[k]){
+                    max = sortedArr[i] * sortedArr[j] * sortedArr[k];
+                }
+            }
+        }
     }
 
-    // 음수가 있을때는 양수로 바꿔줘요.
-
-    let nArray = array.map( (value) => {
-        if( value < 0){
-            value = value*-1;
-        }
-        return value;
-    });
-
-
-
-    // 큰수가 앞으로 오게 내림차순해요.
-    nArray.sort( ( a,b ) => b-a );
-
-    console.log(nArray);
-
-
-    return nArray.reduce((acc,cur,i) => {
-
-        if(i >= 3){
-            return acc;
-        }
-
-        return acc * cur;
-    });
+    return max;
 
 };
