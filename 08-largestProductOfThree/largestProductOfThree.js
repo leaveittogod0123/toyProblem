@@ -25,6 +25,8 @@ var largestProductOfThree = function(array) {
 
     if(EveryNegativeflag){
 
+        array.sort();
+
         let ans = array.sort()[array.length-1] -1;
 
         return ans;
@@ -33,14 +35,22 @@ var largestProductOfThree = function(array) {
 
     // 음수가 있을때는 양수로 바꿔줘요.
 
-    let negativeArray = [];
+    let nArray = array.map( (value) => {
+        if( value < 0){
+            value = value*-1;
+        }
+        return value;
+    });
+
 
 
     // 큰수가 앞으로 오게 내림차순해요.
-    array.sort( ( a,b ) => b-a );
+    nArray.sort( ( a,b ) => b-a );
+
+    console.log(nArray);
 
 
-    return array.reduce((acc,cur,i) => {
+    return nArray.reduce((acc,cur,i) => {
 
         if(i >= 3){
             return acc;
