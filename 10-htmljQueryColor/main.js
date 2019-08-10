@@ -7,6 +7,8 @@ $(function(){
 
   // TODO: your code here!
 
+    let p = $('p');
+    console.log('parent',p.parent());
 
   // --------------STEP 2--------------
   // Next, change spans to random colors, once per second
