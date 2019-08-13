@@ -17,5 +17,19 @@
 
 var rotatedArraySearch = function (rotated, target) {
   // Your code here:
+    let idx = 0;
+    if(!rotated.includes(target)){
+        return null;
+    }
+
+    for ( ele of rotated) {
+        if( ele === target){
+            break;
+        }else{
+            idx+=1;
+        }
+    }
+
+    return idx;
 };
 
