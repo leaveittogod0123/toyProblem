@@ -15,21 +15,53 @@
  * Target time complexity: O(log(array.length))
  */
 
-var rotatedArraySearch = function (rotated, target) {
+var rotatedArraySearch = function (rotated, _target) {
   // Your code here:
-    let idx = 0;
-    if(!rotated.includes(target)){
-        return null;
+
+    function binarySearch(arr, low, high, target) {
+        if (high < low)
+            return null;
+
+        let mid = Math.floor((low + high)/2);
+        if (target === arr[mid])
+            return mid;
+
+        if (target > arr[mid])
+            return binarySearch(arr, (mid + 1), high, target);
+
+        // else
+        return binarySearch(arr, low, (mid -1), target);
     }
 
-    for ( ele of rotated) {
-        if( ele === target){
-            break;
-        }else{
-            idx+=1;
-        }
+    function findPivot(arr, low, high){
+        if ( high < low) return -1;
+        if ( high === low) return low;
+
+        let mid = Math.floor((low + high)/2);
+        if( mid < high && arr[mid] > arr[mid+1])
+            return mid;
+
+        if( mid > low && arr[mid] < arr[mid-1])
+            return (mid-1);
+
+        if( arr[low] >= arr[mid])
+            return findPivot(arr, low, mid-1);
+
+        return findPivot(arr, mid+1, high);
     }
 
-    return idx;
+
+    const length = rotated.length-1;
+    let pivot = findPivot(rotated, 0, length);
+    if( pivot === -1) return binarySearch(rotated, 0, length, _target);
+
+    if( rotated[pivot] === _target) return pivot;
+
+    if(rotated[0] <= _target) return binarySearch(rotated, 0, pivot-1, _target);
+
+    return binarySearch(rotated, pivot+1, length, _target);
+
 };
+
+console.log(rotatedArraySearch([4, 5, 6, 0, 1, 2, 3], 1));
 
