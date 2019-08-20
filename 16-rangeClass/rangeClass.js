@@ -40,16 +40,45 @@
 
 
 var Range = function(start, end, step) {
+    this.start = start;
+    this.end = null;
+    this.step = null;
+
+    let temp =0, swap = 0;
+    if(end){
+        this.end = end;
+        if( end > start){
+            temp = 1;
+        }else{
+            temp = -1;
+            swap = this.start;
+            this.start = this.end;
+            this.end = swap;
+        }
+        this.step = temp;
+        this.step = step || temp;
+    }
+
+
 };
 
 Range.prototype.size = function () {
+    let count = 0;
+    for(let i = this.start; i <= this.end; i+= this.step){
+        count++;
+    }
+    return count;
 };
 
 Range.prototype.each = function (callback) {
+    if (this.size() > 0) {
+        for (let i = this.start; i <= this.end; i+= this.step) {
+            callback(i);
+        }
+    }
 };
 
 Range.prototype.includes = function (val) {
-};
 
-var range = new Range(1);
+};
 

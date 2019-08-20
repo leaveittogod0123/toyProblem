@@ -34,7 +34,6 @@ describe('Range', function() {
   it('should have `size()` method that returns number of elements', function() {
       var justOne = new Range(1);
       should.exist(justOne.size);
-
       justOne.size().should.eql(1);
 
       var oneToTen = new Range(1, 10);
@@ -42,9 +41,12 @@ describe('Range', function() {
 
       var evenDigits = new Range(2, 8, 2);
       evenDigits.size().should.eql(4);
+      console.log('evenDigits.size():',evenDigits.size());
+
 
       var threes = new Range(3, 100, 3);
       threes.size().should.eql(33);
+      console.log('threes.size():',threes.size());
   });
 
   describe('#each', function(){
