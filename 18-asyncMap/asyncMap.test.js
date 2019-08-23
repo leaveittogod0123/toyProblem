@@ -74,6 +74,7 @@ describe('asyncMap', function() {
     var res;
     asyncMap([wait3For1, wait2For2], function(arr){
       res = arr;
+      console.log(res);
       res.should.deepEqual([1, 2]);
       done();
     });

@@ -39,5 +39,14 @@
  */
 
 
-var asyncMap = function(tasks, callback){
+var asyncMap = async (tasks, callback) => {
+    let ans = [];
+    for (const task of tasks) {
+        console.log('task:',task);
+        console.log('callback',callback);
+        let temp = await task(callback);
+        ans.push(temp);
+    }
+    return ans;
 };
+
