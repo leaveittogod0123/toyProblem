@@ -13,18 +13,52 @@
  */
 
 var longestRun = function (string) {
-  // TODO: Your code here!
+    // TODO: Your code here!
+    let max = -1;
+    let obj = {};
+    let curEle = string[0];
+    let start = 0, end = 0;
+    for (let i = 0; i < string.length; i++) {
+        if (curEle !== string[i]) {
+            end = i-1;
+            let tmp = [start, end];
+            if (!obj[curEle]) {
+                obj[curEle] = [];
+            }
+            obj[curEle].push(tmp);
+
+            curEle = string[i];
+            start = end = i;
+        }
+    }
+
+    for (const i in obj) {
+        for(const idx of obj[i]){
+
+            let startIdx = idx[0];
+            let endIdx = idx[1];
+
+            if (max === -1 || endIdx - startIdx > max[1] - max[0]) {
+                max = idx;
+            }
+        }
+
+    }
+
+    return max = (max === -1) ? [0,0] : max;
 };
 
 // If you need a random string generator, use this!
 // (you wont need this function for your solution but it may help with testing)
 var randomString = function (len) {
-  var text = "";
-  var possible = "abcdefghijklmnopqrstuvwxyz";
+    var text = "";
+    var possible = "abcdefghijklmnopqrstuvwxyz";
 
-  for(var i = 0; i < len; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
+    for (var i = 0; i < len; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
 
-  return text;
+    return text;
 };
+
+console.log(longestRun('abc'));
