@@ -104,8 +104,7 @@ var mergeSort = function(array) {
         .map(v=>0);
 
     const merge = (arr, leftStart, leftEnd, rightStart, rightEnd) => {
-        let leftIdx = leftStart;
-        let rightIdx = rightStart;
+        let [leftIdx, rightIdx] = [leftStart, rightStart];
         let tempIdx = 0;
 
         while(leftIdx <= leftEnd && rightIdx <= rightEnd){
@@ -151,3 +150,4 @@ var mergeSort = function(array) {
     return array;
 };
 
+var result = mergeSort([8,7,3,6,9,2,4,5,1]);
