@@ -33,6 +33,13 @@
 
 var shuffleDeck = function(deck) {
   // Your code here
+  let tempDeck = [...deck];
+  let newDeck = [];
+  while(tempDeck.length){
+    let temp = tempDeck.splice(Math.floor(Math.random()*tempDeck.length),1)[0];
+    newDeck.push(temp);
+  }
+  return newDeck;
 };
 
 // Ordered deck generator provided for your testing convenience
