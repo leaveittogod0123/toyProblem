@@ -24,7 +24,6 @@ var makeHashTable = function () {
         const hash=getIndexBelowMaxForKey(key, storageLimit);
         delete storage[hash];
     };
-
     return result;
 };
 
