@@ -25,56 +25,50 @@ var LinkedList = function(){
 
 //write methods here!
 
-LinkedList.prototype.addToTail = function(num){
+LinkedList.prototype.addToTail = function(value){
 
-    let node = this.makeNode(num);
+    var newTail = this.makeNode(value);
+    if (!this.head) {
+        this.head = newTail;
+    }
+    if (this.tail) {
+        this.tail.next = newTail;
+    }
+    this.tail = newTail;
 
-    // head null tail null
-    if( !this.head && !this.tail){
-        this.head = this.tail = node;
-    }
-    // head null tail not null
-    else if( !this.head && this.tail){
-        //이런 경우는 없음 removeTail이 없음
-    }
-
-    // head not null tail null
-    else if( this.head && !this.tail){
-        this.head.next = this.tail = node;
-    }
-
-    // head not null tail not null
-    else{
-        this.tail.next = node;
-    }
 };
 
 LinkedList.prototype.removeHead = function(){
     //head가 있다.
-    if(this.head){
-        let tmp = this.head.value;
-        this.head = this.head.next;
-        return tmp;
-    }else{
+
+    var currentHead = this.head;
+    if (!currentHead) {
         return null;
     }
+    if (this.head === this.tail) {
+        this.head = null;
+        this.tail = null;
+    } else {
+        this.head = this.head.next;
+    }
+    return currentHead.value;
 };
 
-LinkedList.prototype.contains = function(num){
+LinkedList.prototype.contains = function(value){
     let node = this.head;
     while(node){
-        if( node.value === num)
+        if( node.value === value)
             return true;
 
         node = node.next;
     }
 
-    return flag;
+    return false;
 };
 
-LinkedList.prototype.makeNode = function(num){
+LinkedList.prototype.makeNode = function(value){
     return {
-        value: num,
+        value,
         next: null
     };
 };
