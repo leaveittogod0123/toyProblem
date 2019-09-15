@@ -34,7 +34,7 @@ var robotPaths = function(n) {
 
   let board = makeBoard(n);
 
-  let dLocation = [[-1,0],[0,1],[1,0],[0,-1]];
+  let dLocation = [[0,1],[1,0],[-1,0],[0,-1]];
 
   function dfs(row,col){
     if( row === n-1 && col === n-1){
@@ -44,16 +44,25 @@ var robotPaths = function(n) {
 
     board.togglePiece(row,col);
 
-    for(let i =0; i< dLocation.length; i++){
-      let dRow = row + dLocation[i][0];
-      let dCol = col + dLocation[i][1];
+    // for(let i =0; i< dLocation.length; i++){
+    //   let dRow = row + dLocation[i][0];
+    //   let dCol = col + dLocation[i][1];
+    //
+    //   if(dRow >=0 && dRow < n && dCol >=0 && dCol < n){
+    //     if(!board.hasBeenVisited(dRow,dCol)){
+    //       dfs(dRow,dCol);
+    //     }
+    //   }
+    // }
 
-      if(dRow >=0 && dRow < n && dCol >=0 && dCol < n){
-        if(!board.hasBeenVisited(dRow,dCol)){
-          dfs(dRow,dCol);
-        }
-      }
-    }
+    if(row+1 < n && !board.hasBeenVisited(row+1,col))
+      dfs(row+1, col);
+    if(col+1 < n && !board.hasBeenVisited(row,col+1))
+      dfs(row, col+1);
+    if(row-1 >= 0 && !board.hasBeenVisited(row-1,col))
+      dfs(row-1,col);
+    if(col-1 >= 0 && !board.hasBeenVisited(row,col-1))
+      dfs(row, col-1);
 
     board.togglePiece(row,col);
   }
