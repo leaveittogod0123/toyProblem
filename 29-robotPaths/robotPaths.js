@@ -42,22 +42,22 @@ var robotPaths = function(n) {
       return;
     }
 
+    board.togglePiece(row,col);
+
     for(let i =0; i< dLocation.length; i++){
       let dRow = row + dLocation[i][0];
       let dCol = col + dLocation[i][1];
 
       if(dRow >=0 && dRow < n && dCol >=0 && dCol < n){
         if(!board.hasBeenVisited(dRow,dCol)){
-          board.togglePiece(dRow,dCol);
           dfs(dRow,dCol);
-          board.togglePiece(dRow,dCol);
         }
       }
     }
+
+    board.togglePiece(row,col);
   }
-  board.togglePiece(0,0);
   dfs(0,0);
-  board.togglePiece(0,0);
   return ans;
 }
 
