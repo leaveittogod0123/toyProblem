@@ -57,6 +57,9 @@ var robotPaths = function(n) {
   }
   board.togglePiece(0,0);
   dfs(0,0);
+  board.togglePiece(0,0);
   return ans;
 }
 
+
+console.log(robotPaths(6));
