@@ -28,6 +28,35 @@ var makeBoard = function(n) {
   return board;
 };
 
-var robotPaths = function(n, board, i, j) {
+var robotPaths = function(n) {
+
+  let ans = 0;
+
+  let board = makeBoard(n);
+
+  let dLocation = [[-1,0],[0,1],[1,0],[0,-1]];
+
+  function dfs(board,row,col){
+    if( row === board.length-1 && col === board.length-1){
+      ans+=1;
+      return;
+    }
+
+    for(let i =0; i< dLocation.length; i++){
+      let dRow = row + dLocation[i][0];
+      let dCol = col + dLocation[i][1];
+
+      if(dRow < 0 || dRow === board.length || dCol <0 || dCol === board.length) continue;
+      if(board.hasBeenVisited(dRow,dCol)) continue;
+
+      board.togglePiece(dRow,dCol);
+      dfs(board,dRow,dCol);
+      board.togglePiece(dRow,dCol);
+    }
+  }
+  board.togglePiece(0,0);
+  dfs(board, 0,0);
+  return ans;
 }
 
+console.log(robotPaths(2));
