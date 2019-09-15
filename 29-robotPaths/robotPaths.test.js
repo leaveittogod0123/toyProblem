@@ -50,7 +50,8 @@ describe('robotPaths', function() {
     robotPaths(5).should.equal(8512);
   });
 
-  it('should correctly identify the number of unique paths for 6x6 grid', function(){
+  it('should correctly identify the number of unique paths for 6x6 grid', function(done){
     robotPaths(6).should.equal(1262816);
+    done();
   });
 });
