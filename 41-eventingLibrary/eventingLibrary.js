@@ -20,7 +20,24 @@
  * - It is not necessary to write a way to remove listeners.
  */
 
-var mixEvents = function(obj) {
+var mixEvents = function (obj) {
   // TODO: Your code here
+  let map = new Map();
+
+  obj.on = (event, callback) => {
+    if (map.has(event)) {
+      map.get(event).add(callback);
+    } else {
+      map.set(event, new Set([callback]));
+    }
+  }
+
+  obj.trigger = (event, ...args) => {
+    if (map.has(event)) {
+      for (const fn of map.get(event).values()) {
+        fn.apply(null, args)
+      }
+    }
+  }
   return obj;
 };
