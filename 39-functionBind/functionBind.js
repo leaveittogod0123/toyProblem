@@ -23,8 +23,13 @@
  *
  */
 
-var bind = function() {
-  // TODO: Your code here
+var bind = function(func, context) {
+  let previousArgs = [].slice.call(arguments, 2);
+return function() {
+    let currentArgs = [].slice.call(arguments);
+    let combinedArgs = [].concat(previousArgs, currentArgs);
+    return func.apply(context, combinedArgs);
+  }
 };
 
 /*
@@ -52,9 +57,21 @@ var bind = function() {
  *
  */
 
-Function.prototype.bind = function() {
-  // TODO: Your code here
-  return function() {
-    // TODO: Your code here, too
+Function.prototype.bind = function(context) {
+  // method is attached to the prototype, so just refer to it as this.
+  let func = this;
+  let previousArgs = [].slice.call(arguments, 1);
+
+  return function(){
+    let currentArgs = [].slice.call(arguments);
+    let combinedArgs = [].concat(previousArgs, currentArgs);
+    return func.apply(context, combinedArgs);
   };
 };
+
+// var func = function() { return this };
+// var context = { foo: 'bar' };
+// var boundFunc = bind(func, context);
+// var result = boundFunc();
+
+// console.log(result, context);
