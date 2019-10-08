@@ -31,10 +31,23 @@
  * Constraint 3: Do not mutate the original nodes in any way
  */
 
-var Node = function(value){
+var Node = function (value) {
   return { value: value, next: null };
 }
 
-var hasCycle = function(linkedList){
+var hasCycle = function (linkedList) {
   // TODO: implement me!
+  let tortoise = linkedList;
+  let hare = linkedList;
+
+  while (hare && hare.next) {
+    tortoise = tortoise.next;
+    hare = hare.next.next;
+
+    if (tortoise === hare) {
+      return true;
+    }
+  }
+
+  return false;
 };
