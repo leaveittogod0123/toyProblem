@@ -17,7 +17,28 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+
+var rockPaperScissors = function (cnt) {
+    // TODO: your solution here
+    const argument = cnt || 0;
+    const results = [];
+
+    const box = ['rock', 'paper', 'scissors'];
+
+    function recurse(cnt, played) {
+        if(cnt === 0) {
+            results.push(played);
+            return;
+        }
+
+        for(let i = 0; i < box.length; i++) {
+            const current = box[i];
+            recurse(cnt-1, played.concat(current));
+        }
+    };
+
+    recurse(argument, []);
+
+    return results;
 };
+
