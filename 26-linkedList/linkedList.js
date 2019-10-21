@@ -19,21 +19,56 @@
 
 var LinkedList = function(){
   //fill me in!
+    this.tail = null;
+    this.head = null;
 };
 
 //write methods here!
 
-LinkedList.prototype.addToTail = function(
-){
+LinkedList.prototype.addToTail = function(value){
+
+    var newTail = this.makeNode(value);
+    if (!this.head) {
+        this.head = newTail;
+    }
+    if (this.tail) {
+        this.tail.next = newTail;
+    }
+    this.tail = newTail;
+
 };
 
 LinkedList.prototype.removeHead = function(){
+    //head가 있다.
+
+    var currentHead = this.head;
+    if (!currentHead) {
+        return null;
+    }
+    if (this.head === this.tail) {
+        this.head = null;
+        this.tail = null;
+    } else {
+        this.head = this.head.next;
+    }
+    return currentHead.value;
 };
 
-LinkedList.prototype.contains = function(
-){
+LinkedList.prototype.contains = function(value){
+    let node = this.head;
+    while(node){
+        if( node.value === value)
+            return true;
+
+        node = node.next;
+    }
+
+    return false;
 };
 
-LinkedList.prototype.makeNode = function(
-){
+LinkedList.prototype.makeNode = function(value){
+    return {
+        value,
+        next: null
+    };
 };
