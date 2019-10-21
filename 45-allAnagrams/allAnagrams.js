@@ -12,6 +12,26 @@
   * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
   */
 
-var allAnagrams = function(string) {
+var allAnagrams = function (string) {
   // Your code here.
+  let storage = {};
+
+  function recurse(anagrams, currentString) {
+    if (anagrams.length === string.length) {
+      storage[anagrams] = true;
+      return;
+    }
+
+    for (let i = 0; i < currentString.length; i++) {
+      let current = currentString.slice(0, i);
+      let letter = currentString.slice(i + 1);
+      recurse(anagrams + currentString[i], current + letter);
+    }
+  }
+
+  recurse('', string);
+  return Object.keys(storage);
 };
+
+var result = allAnagrams('apps');
+console.log(result);
