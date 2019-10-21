@@ -90,6 +90,7 @@ describe('DFSelect', function() {
     should.deepEqual(result, trueNodes);
 
     result = root.DFSelect(falseFilter);
+
     // we expect back all the `falseNodes` using the `falseFilter`
     should.deepEqual(result, falseNodes);
   });
@@ -98,7 +99,7 @@ describe('DFSelect', function() {
     // this filter constructor produces a filter for the specified depth
     var depthFilter = function (filterDepth) {
       return function (node, nodeDepth) {
-        return filterDepth == nodeDepth;
+        return filterDepth === nodeDepth;
       };
     };
     // keep a list of nodes by depth to compare
