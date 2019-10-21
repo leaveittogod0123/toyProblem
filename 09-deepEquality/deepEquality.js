@@ -12,4 +12,38 @@
   *
   */
 var deepEquals = function(apple, orange){
+
+    function inner(obj1,obj2){
+
+        if(Object.keys(obj1).length !== Object.keys(obj2).length)
+            return false;
+
+
+
+        for(const key in obj1){
+
+           if( Object.keys(obj1[key]).length && typeof (obj1[key]) !== "string"){
+
+               if(!inner(obj1[key], obj2[key])){
+                   return false;
+               }
+            }else{
+
+               if(typeof (obj1[key]) === "string"){
+                   if (obj1[key] != obj2[key]){
+                       return false;
+                   }
+               }
+
+               if(obj1[key] !== obj2[key]){
+                   return false;
+               }
+           }
+        }
+
+        return true;
+    }
+
+    return inner(apple,orange);
 };
+
