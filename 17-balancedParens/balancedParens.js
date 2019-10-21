@@ -24,6 +24,38 @@
  *
  */
 var balancedParens = function(input){
-};
 
+    //stack의 기본문제
+    //push Array.prototype.push
+    //pop Array.prototype.pop
+
+    let st = [];
+
+    for(const ch of input){
+        if( ch === '[' || ch === '{' || ch === '('){
+            st.push(ch);
+        }else if( ch ===']'){
+            if( st.length && st[st.length-1] === '['){
+                st.pop();
+            }else{
+                return false;
+            }
+        }else if( ch ==='}'){
+            if( st.length && st[st.length-1] === '{'){
+                st.pop();
+            }else{
+                return false;
+            }
+        }else if( ch ===')'){
+            if( st.length && st[st.length-1] === '('){
+                st.pop();
+            }else{
+                return false;
+            }
+        }
+    }
+
+    return st.length === 0;
+
+};
 
