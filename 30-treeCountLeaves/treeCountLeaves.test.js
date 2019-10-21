@@ -1,12 +1,15 @@
 var should = require('should');
+var vm = require('vm');
+var fs = require('fs');
 
+// if this test is being run on a server it should be ONLY to test the
+// provided solutions
 if(typeof window === 'undefined'){
-  // looks for a file with the same name as this one but with `.test.js`
-  // replaced with `.js`
-  var file = __filename.replace(/\.test\.js$/,'.js');
-  require('vm').runInThisContext(require('fs').readFileSync(file), file);
+  // looks for a file with the same name as this one but with
+  // `.test.js` replaced with `.js`
+  var filename = __filename.replace(/\.test\.js$/, '.js');
+  vm.runInThisContext(fs.readFileSync(filename), filename);
 }
-
 describe('Tree', function () {
   it('should exist', function(){
     should.exist(Tree);
