@@ -80,8 +80,79 @@ BinaryHeap.prototype.getRoot = function () {
 
 BinaryHeap.prototype.insert = function (value) {
   // TODO: Your code here
+  this._heap.push(value);
+  let parent = Math.floor(this._heap.length/2);
+  let child = this._heap.length-1;
+
+  while(child !== 0){
+    if(this._compare(this._heap[child],this._heap[parent])){
+      [this._heap[parent], this._heap[child]] = [this._heap[child], this._heap[parent]];
+      child = parent;
+      parent = Math.floor(child/2);
+    }else{
+      break;
+    }
+  }
 }
 
 BinaryHeap.prototype.removeRoot = function () {
   // TODO: Your code here
+  let temp = this._heap[0];
+  this._heap[0] = this._heap.pop();
+
+  let parent = 0;
+  let leftChild = 1;
+  let rightChild = 2;
+  let child;
+
+  if(!this._heap[leftChild]){
+    return temp;
+  }else if(!this._heap[rightChild]){
+    child = leftChild;
+  }else{
+    if( this._compare(this._heap[rightChild],this._heap[leftChild])){
+      child = rightChild;
+    }else{
+      child = leftChild;
+    }
+  }
+
+
+  while(child < this._heap.length){
+
+    if(this._compare(this._heap[child],this._heap[parent])){
+      [this._heap[child], this._heap[parent]] = [this._heap[parent], this._heap[child]];
+
+      parent = child;
+      leftChild = parent*2+1;
+      rightChild = parent*2+2;
+
+      if(!this._heap[leftChild]){
+        return temp;
+      }else if(!this._heap[rightChild]){
+        child = leftChild;
+      }else{
+        if( this._compare(this._heap[rightChild],this._heap[leftChild])){
+          child = rightChild;
+        }else{
+          child = leftChild;
+        }
+      }
+    }else{
+      break;
+    }
+
+  }
+
+  return temp;
 }
+
+
+var binaryHeap = new BinaryHeap();
+binaryHeap.insert(4);
+binaryHeap.insert(5);
+binaryHeap.insert(9);
+binaryHeap.insert(8);
+binaryHeap.insert(1);
+binaryHeap.insert(0);
+binaryHeap.removeRoot();
