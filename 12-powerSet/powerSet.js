@@ -18,4 +18,40 @@
  */
 
 var powerSet = function(str){
+    let set = new Set();
+    let checks = {};
+
+    for(const ch of str){
+        set.add(ch);
+    }
+
+    const uniqset = [...set];
+    const ans = [];
+
+
+    function solve(arr, idx){
+        if(idx === arr.length){
+            let ansStr = "";
+            for(const key in checks){
+
+                if(checks[key]){
+                    ansStr = ansStr.concat(uniqset[key]);
+                }
+            }
+            ans.push(ansStr);
+            return;
+        }
+
+        //선택함
+        checks[idx] = true;
+        solve(arr,idx+1);
+        checks[idx] = false;
+
+        //선택안함.
+        solve(arr,idx+1)
+
+    }
+
+    solve(uniqset,0);
+    return ans;
 }
