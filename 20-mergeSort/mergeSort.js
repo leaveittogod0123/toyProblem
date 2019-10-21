@@ -96,7 +96,58 @@
  */
 
 
-
 var mergeSort = function(array) {
   // Your code here.
+
+    let temp = new Array(array.length)
+        .fill()
+        .map(v=>0);
+
+    const merge = (arr, leftStart, leftEnd, rightStart, rightEnd) => {
+        let [leftIdx, rightIdx] = [leftStart, rightStart];
+        let tempIdx = 0;
+
+        while(leftIdx <= leftEnd && rightIdx <= rightEnd){
+            if( arr[leftIdx] < arr[rightIdx]){
+                temp[tempIdx] = arr[leftIdx];
+                tempIdx+=1;
+                leftIdx+=1;
+            }else{
+                temp[tempIdx] = arr[rightIdx];
+                tempIdx+=1;
+                rightIdx+=1;
+            }
+        }
+
+        while(leftIdx <= leftEnd){
+            temp[tempIdx] = arr[leftIdx];
+            tempIdx++;
+            leftIdx++;
+        }
+
+        while(rightIdx <= rightEnd){
+            temp[tempIdx] = arr[rightIdx];
+            tempIdx++;
+            rightIdx++;
+        }
+
+        for(let i=0, j=leftStart; i< tempIdx; i++, j++){
+            arr[j] = temp[i];
+        }
+    }
+
+    const mergeSort = (arr, start, end) => {
+        if(start < end){
+            let mid = Math.floor((start + end)/2);
+            mergeSort(arr, start, mid);
+            mergeSort(arr, mid+1, end);
+            merge(arr, start, mid, mid+1, end);
+        }
+    }
+
+    mergeSort(array, 0, array.length-1);
+
+    return array;
 };
+
+var result = mergeSort([8,7,3,6,9,2,4,5,1]);

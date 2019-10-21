@@ -33,6 +33,7 @@ describe('mergeSort', function() {
 
   it('should sort a short array of integers', function(){
     var result = mergeSort([8,7,3,6,9,2,4,5,1]);
+    console.log(result);
     result.should.be.eql([1,2,3,4,5,6,7,8,9]);
   });
 
