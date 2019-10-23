@@ -1,5 +1,7 @@
 # im10-2018-11-toy-problems
 
+01, 16, 18, 24, 29, 30~,40
+
 ## How to submit Toy Problems
 
 1. First, you put your name and batch in student.json.
