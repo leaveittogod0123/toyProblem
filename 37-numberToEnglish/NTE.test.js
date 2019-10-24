@@ -1,5 +1,4 @@
 import "./NTE";
-import expectExport from "expect";
 
 describe('toEnglish', function () {
 

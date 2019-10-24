@@ -7,7 +7,7 @@
  * Resize by half whenever utilization drops below 1/4.
  */
 
-var makeHashTable = function () {
+export const makeHashTable = function () {
   var result = {};
   var storage = [];
   var storageLimit = 4;
@@ -86,7 +86,7 @@ var makeHashTable = function () {
 // This is a "hashing function". You don't need to worry about it, just use it
 // to turn any string into an integer that is well-distributed between
 // 0 and max - 1
-var getIndexBelowMaxForKey = function (str, max) {
+export const getIndexBelowMaxForKey = function (str, max) {
   var hash = 0;
   for (var i = 0; i < str.length; i++) {
     hash = (hash << 5) + hash + str.charCodeAt(i);
@@ -95,3 +95,4 @@ var getIndexBelowMaxForKey = function (str, max) {
   }
   return hash % max;
 };
+
